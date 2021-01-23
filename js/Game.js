@@ -48,14 +48,12 @@ class Game {
     if(allPlayers !== undefined){
       background(rgb(198,135,103));
       image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
-      
-      //var display_position = 100;
-      
+          
       //index of the array
       var index = 0;
 
       //x and y position of the cars
-      var x = 175 ;
+      var x = 225;
       var y;
 
       for(var plr in allPlayers){
@@ -63,20 +61,19 @@ class Game {
         index = index + 1 ;
 
         //position the cars a little away from each other in x direction
-        x = x + 200;
+        x = x + 300;
         //use data form the database to display the cars in y direction
         y = displayHeight - allPlayers[plr].distance;
         cars[index-1].x = x;
         cars[index-1].y = y;
 
+        //Identifying the currently active car/player
         if (index === player.index){
-          cars[index - 1].shapeColor = "red";
           camera.position.x = displayWidth/2;
           camera.position.y = cars[index-1].y;
+          fill(255, 0, 0);
+          ellipse(x, y, 60, 60);
         }
-       
-        //textSize(15);
-        //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
       }
 
     }
@@ -86,9 +83,10 @@ class Game {
       player.update();
     }
 
-    if(player.distance > 3860){
+    if(player.distance > 5110){
       gameState = 2;
     }
+  
    
     drawSprites();
   }
